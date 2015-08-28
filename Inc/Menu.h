@@ -6,7 +6,7 @@
 #include "stm32f1xx_hal.h"
 
 typedef enum {SIMPLE, ACTION, INPUT, ADMIN} itemOption;
-typedef enum {INC, DEC} valueChange;
+typedef enum {ENTER , INC, DEC} valueChange;
 
 typedef struct PROGMEM{
 	struct menuItem  *Next;

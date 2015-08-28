@@ -4,7 +4,8 @@
 
 //strucure with settings for lcd initialization
 void lcdMakeInitSettings();
-
+void inputMenu(valueChange par);
+void inputRepaint(uint16_t value);
 LCD_InitTypeDef LCD_InitStr;
 char* MAIN_MENU_TEXT = "Главное меню";
 
@@ -16,39 +17,39 @@ MAKE_MENU(m_Sett, NULL_ENTRY, m_Run, NULL_ENTRY, us_FireMode,  SIMPLE, 1, "Настр
 
 //User settings sub menu
 //us_FireMode, us_TempBoil, us_IgnTime, us_ChSCrewTime, us_CleanTime
-MAKE_MENU(us_FireMode, us_TempBoil, NULL_ENTRY, m_Sett, NULL_ENTRY, SIMPLE ,0, "Режим горения");
+MAKE_MENU(us_FireMode, us_TempBoil, NULL_ENTRY, m_Sett, us_FireModeChange, SIMPLE ,0, "Режим горения");
    //sub menu to input
    MAKE_MENU(us_FireModeChange, NULL_ENTRY, NULL_ENTRY, us_FireMode, NULL_ENTRY, INPUT ,0, "Режим горения");
 
-MAKE_MENU(us_TempBoil, us_IgnTime, us_FireMode, m_Sett, NULL_ENTRY,  SIMPLE,1, "Тем-ра котла");
+MAKE_MENU(us_TempBoil, us_IgnTime, us_FireMode, m_Sett, us_TempBoilChange,  SIMPLE,1, "Тем-ра котла");
    //sub menu to input
    MAKE_MENU(us_TempBoilChange, NULL_ENTRY, NULL_ENTRY, us_TempBoil, NULL_ENTRY, INPUT ,0, "Тем-ра котла");
 
-MAKE_MENU(us_IgnTime, us_TanTime, us_TempBoil, m_Sett, NULL_ENTRY, SIMPLE, 2, "Время розжига");
+MAKE_MENU(us_IgnTime, us_TanTime, us_TempBoil, m_Sett, us_IgnTimeChange, SIMPLE, 2, "Время розжига");
    //sub menu to input
    MAKE_MENU(us_IgnTimeChange, NULL_ENTRY, NULL_ENTRY, us_IgnTime, NULL_ENTRY, INPUT ,0, "Время розжига");
 
-MAKE_MENU(us_TanTime, us_FuelIgn, us_IgnTime, m_Sett, NULL_ENTRY, SIMPLE,3, "Работа тэна");
+MAKE_MENU(us_TanTime, us_FuelIgn, us_IgnTime, m_Sett, us_TanTimeChange, SIMPLE,3, "Работа тэна");
    //sub menu to input
    MAKE_MENU(us_TanTimeChange, NULL_ENTRY, NULL_ENTRY, us_TanTime, NULL_ENTRY, INPUT ,0, "Работа тэна");
 	 
-MAKE_MENU(us_FuelIgn, us_ScrewFilling, us_TanTime, m_Sett, NULL_ENTRY, SIMPLE,4, "Топ-во розжига");
+MAKE_MENU(us_FuelIgn, us_ScrewFilling, us_TanTime, m_Sett, us_FuelIgnChange, SIMPLE,4, "Топ-во розжига");
    //sub menu to input
    MAKE_MENU(us_FuelIgnChange, NULL_ENTRY, NULL_ENTRY, us_FuelIgn, NULL_ENTRY, INPUT ,0, "Тем-ра котла");
 	 
-MAKE_MENU(us_ScrewFilling, us_CleanPer, us_FuelIgn, m_Sett, NULL_ENTRY, SIMPLE,5, "Запол-ние шнэка");
+MAKE_MENU(us_ScrewFilling, us_CleanPer, us_FuelIgn, m_Sett, us_ScrewFillingChange, SIMPLE,5, "Запол-ние шнэка");
    //sub menu to input
    MAKE_MENU(us_ScrewFillingChange, NULL_ENTRY, NULL_ENTRY, us_ScrewFilling, NULL_ENTRY, INPUT ,0, "Запол-ние шнэка");
 	 
-MAKE_MENU(us_CleanPer, us_CleanTime, us_ScrewFilling, m_Sett, NULL_ENTRY, SIMPLE,6, "Период чистки");
+MAKE_MENU(us_CleanPer, us_CleanTime, us_ScrewFilling, m_Sett, us_CleanPerChange, SIMPLE,6, "Период чистки");
    //sub menu to input
    MAKE_MENU(us_CleanPerChange, NULL_ENTRY, NULL_ENTRY, us_CleanPer, NULL_ENTRY, INPUT ,0, "Период чистки");
 	 
-MAKE_MENU(us_CleanTime, us_FlameBright, us_CleanPer, m_Sett, NULL_ENTRY,  SIMPLE,7, "Время читски");
+MAKE_MENU(us_CleanTime, us_FlameBright, us_CleanPer, m_Sett, us_CleanTimeChange,  SIMPLE,7, "Время читски");
    //sub menu to input
    MAKE_MENU(us_CleanTimeChange, NULL_ENTRY, NULL_ENTRY, us_CleanTime, NULL_ENTRY, INPUT ,0, "Время чистки");
 	 
-MAKE_MENU(us_FlameBright, us_Diagnostic, us_CleanTime, m_Sett, NULL_ENTRY, SIMPLE,8, "Яркость пламени");
+MAKE_MENU(us_FlameBright, us_Diagnostic, us_CleanTime, m_Sett, us_FlameBrightChange, SIMPLE,8, "Яркость пламени");
    //sub menu to input
    MAKE_MENU(us_FlameBrightChange, NULL_ENTRY, NULL_ENTRY, us_FlameBright, NULL_ENTRY, INPUT ,0, "Яркость пламени");
    
@@ -139,7 +140,9 @@ void lcdRepaintMenu()
 
 /*Moving through the menu*/
 void moveUpMenu()
-	{
+{
+	if(activeItem->Select == SIMPLE)
+	 {
 		//get page number
 		 int stPage = (activeItem->Index / FIELDS_NUMBER);
 	  if((void*)activeItem->Previous == (void*)&NULL_ENTRY) return;
@@ -150,25 +153,30 @@ void moveUpMenu()
 		lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
 
 	}
+	 else if(activeItem->Select == INPUT)
+		 {
+			inputMenu(INC);
+		 }
+}
 		 
  void moveDnMenu()
   {
 		//get page number
-		volatile int stPage = (activeItem->Index / FIELDS_NUMBER);
+	if(activeItem->Select == SIMPLE)
+		{
+		 volatile int stPage = (activeItem->Index / FIELDS_NUMBER);
 		
- 		if((void*)activeItem->Next == (void*)&NULL_ENTRY) return;
-	    else activeItem = (void*)activeItem->Next;
-    //if we change a page we need to repaint display
-		if(stPage != (activeItem->Index / FIELDS_NUMBER)) {stPage = (activeItem->Index / FIELDS_NUMBER); lcdRepaintMenu();}
-		lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
-		/*if(stPage <= 1)
+ 		 if((void*)activeItem->Next == (void*)&NULL_ENTRY) return;
+	     else activeItem = (void*)activeItem->Next;
+			
+       //if we change a page we need to repaint display
+		   if(stPage != (activeItem->Index / FIELDS_NUMBER)) {stPage = (activeItem->Index / FIELDS_NUMBER); lcdRepaintMenu();}
+		   lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
+	   }
+	  else if(activeItem->Select == INPUT)
 		 {
-		  lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
+			inputMenu(DEC);
 		 }
-		 else 
-		 {
-		  lcdMovePoint(activeItem->Index/stPage - 1);
-		 }*/
 
   }
 	
@@ -185,9 +193,18 @@ void moveUpMenu()
   {
 	  if((void*)activeItem->Child == (void*)&NULL_ENTRY) return;
 	   else activeItem = (void*)activeItem->Child;
-		lcdRepaintMenu();
-    lcdMovePoint(activeItem->Index);
-	}
+		
+		if(activeItem->Select == SIMPLE) 
+		  {
+				lcdRepaintMenu();
+				lcdMovePoint(activeItem->Index);
+			}
+		 else if(activeItem->Select == INPUT) 
+		 {
+			 LCD_Clear();
+			 inputMenu(ENTER);
+		 }
+ 	}
 	
 	//Point moving
 	void lcdMovePoint(uint8_t pos)
@@ -211,55 +228,55 @@ void moveUpMenu()
 	   if(activeItem == (void*)&us_FireModeChange)
 		   {
 			  	//change parameter of fire mode
-				   fire_mode++;
+				  inputRepaint(++fire_mode);
 			 }
 			
 		 else if(activeItem == (void*)&us_TempBoilChange)
 		   {
 			   //change parameter of temperature of boiler
-				 temp_boil++;
+				 inputRepaint(++temp_boil);
 				 
 			 }			
 		
 		 else if(activeItem == (void*)&us_IgnTimeChange)
 		   {
 			   //change parameter of ignition time
-				 time_ign++;
+				 inputRepaint(++time_ign);
 			 }
 		 else if(activeItem == (void*)&us_TanTimeChange)
 		   {
 			   //change parameter of tan time
-				 tan_work++;
+				 inputRepaint(++tan_work);
 			 }
 
 		 else if(activeItem == (void*)&us_FuelIgnChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 fuel_ign++;
+				 inputRepaint(++fuel_ign);
 			 }
 			
 		 else if(activeItem == (void*)&us_ScrewFillingChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 screw_fill++;
+				 inputRepaint(++screw_fill);
 			 }
 			
 		else if(activeItem == (void*)&us_CleanPerChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				clean_per++;
+				inputRepaint(++clean_per);
 			}		
 
 		else if(activeItem == (void*)&us_CleanTimeChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				clean_time++;
+				inputRepaint(++clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
 		  {
 			  //change parameter of quantity ignition fuel
-					flame_bright++;
+					inputRepaint(++flame_bright);
 			}
 		}		
 	 else if(par == DEC)
@@ -267,56 +284,123 @@ void moveUpMenu()
 	   if(activeItem == (void*)&us_FireModeChange)
 		   {
 			  	//change parameter of fire mode
-				 fire_mode--;
+				 inputRepaint(--fire_mode);
 			 }
 			
 		 else if(activeItem == (void*)&us_TempBoilChange)
 		   {
 			   //change parameter of temperature of boiler
-				 temp_boil--;
+				 inputRepaint(--temp_boil);
 			 }			
 		
 		 else if(activeItem == (void*)&us_IgnTimeChange)
 		   {
 			   //change parameter of ignition time
-				 time_ign--;
+				 inputRepaint(--time_ign);
 			 }
 		 else if(activeItem == (void*)&us_TanTimeChange)
 		   {
 			   //change parameter of tan time
-				 tan_work--;
+				 inputRepaint(--tan_work);
 			 }
 
 		 else if(activeItem == (void*)&us_FuelIgnChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 fuel_ign--;
+				 inputRepaint(--fuel_ign);
 			 }
 			
 		 else if(activeItem == (void*)&us_ScrewFillingChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 screw_fill--;
+				 inputRepaint(--screw_fill);
 			 }
 			
 		else if(activeItem == (void*)&us_CleanPerChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				clean_per--;
+				inputRepaint(--clean_per);
 			}		
 
 		else if(activeItem == (void*)&us_CleanTimeChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				clean_time--;
+				inputRepaint(--clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				flame_bright--;
+				inputRepaint(--flame_bright);
 			}
-		}					
+		}			
+
+	 else if(par == ENTER)
+		{			
+	   if(activeItem == (void*)&us_FireModeChange)
+		   {
+			  	//change parameter of fire mode
+				 inputRepaint(fire_mode);
+			 }
+			
+		 else if(activeItem == (void*)&us_TempBoilChange)
+		   {
+			   //change parameter of temperature of boiler
+				 inputRepaint(temp_boil);
+			 }			
+		
+		 else if(activeItem == (void*)&us_IgnTimeChange)
+		   {
+			   //change parameter of ignition time
+				 inputRepaint(time_ign);
+			 }
+		 else if(activeItem == (void*)&us_TanTimeChange)
+		   {
+			   //change parameter of tan time
+				 inputRepaint(tan_work);
+			 }
+
+		 else if(activeItem == (void*)&us_FuelIgnChange)
+		   {
+			   //change parameter of quantity ignition fuel
+				 inputRepaint(fuel_ign);
+			 }
+			
+		 else if(activeItem == (void*)&us_ScrewFillingChange)
+		   {
+			   //change parameter of quantity ignition fuel
+				 inputRepaint(screw_fill);
+			 }
+			
+		else if(activeItem == (void*)&us_CleanPerChange)
+		  {
+			  //change parameter of quantity ignition fuel
+				inputRepaint(clean_per);
+			}		
+
+		else if(activeItem == (void*)&us_CleanTimeChange)
+		  {
+			  //change parameter of quantity ignition fuel
+				inputRepaint(clean_time);
+			}					
+			
+		else if(activeItem == (void*)&us_FlameBrightChange)
+		  {
+			  //change parameter of quantity ignition fuel
+				inputRepaint(flame_bright);
+			}
+		}				
+	}
+	
+	inline void inputRepaint(uint16_t value)
+	{
+		//if need, we clear display
+		LCD_Goto(1, 0);//print title
+		LCD_Puts(activeItem->Text);
+		LCD_Goto(3, 1);
+		LCD_Puts("Параметр:");
+		LCD_Putc(' ');
+		LCD_PutUnsignedInt(value);//print value
 	}
 	
 	void actionMenu()

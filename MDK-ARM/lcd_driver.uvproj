@@ -527,6 +527,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>system_values</GroupName>
+          <Files>
+            <File>
+              <FileName>work_values.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\work_values.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
