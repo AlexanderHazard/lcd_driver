@@ -32,7 +32,5 @@ void gpioDevInit()
 	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
 	GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_10;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-	
-	
-	
+		
 }

@@ -228,55 +228,65 @@ void moveUpMenu()
 	   if(activeItem == (void*)&us_FireModeChange)
 		   {
 			  	//change parameter of fire mode
-				  inputRepaint(++fire_mode);
+				 if(++fire_mode.curVal > fire_mode.maxVal) fire_mode.curVal = fire_mode.minVal;
+				  inputRepaint(fire_mode.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_TempBoilChange)
 		   {
 			   //change parameter of temperature of boiler
-				 inputRepaint(++temp_boil);
+				 if(++temp_boil.curVal > temp_boil.maxVal) temp_boil.curVal = temp_boil.minVal;
+				 inputRepaint(temp_boil.curVal);
 				 
 			 }			
 		
 		 else if(activeItem == (void*)&us_IgnTimeChange)
 		   {
 			   //change parameter of ignition time
-				 inputRepaint(++time_ign);
+				 if(++time_ign.curVal > time_ign.maxVal) time_ign.curVal = time_ign.minVal;
+				 inputRepaint(time_ign.curVal);
 			 }
 		 else if(activeItem == (void*)&us_TanTimeChange)
 		   {
 			   //change parameter of tan time
-				 inputRepaint(++tan_work);
+				 if(++tan_work.curVal > tan_work.maxVal) tan_work.curVal = tan_work.minVal;
+				 inputRepaint(tan_work.curVal);
 			 }
 
 		 else if(activeItem == (void*)&us_FuelIgnChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(++fuel_ign);
+				 if(++fuel_ign.curVal > fuel_ign.maxVal) fuel_ign.curVal = fuel_ign.minVal;
+				 inputRepaint(fuel_ign.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_ScrewFillingChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(++screw_fill);
+				 if(++screw_fill.curVal > screw_fill.maxVal) screw_fill.curVal = screw_fill.minVal;
+				 inputRepaint(screw_fill.curVal);
 			 }
 			
 		else if(activeItem == (void*)&us_CleanPerChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(++clean_per);
+				if(++clean_per.curVal > clean_per.maxVal) clean_per.curVal = clean_per.minVal;
+				inputRepaint(clean_per.curVal);
 			}		
 
 		else if(activeItem == (void*)&us_CleanTimeChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(++clean_time);
+				clean_time += 0.01f;
+				if(clean_time > clean_time_max) clean_time = clean_time_min;
+				inputRepaint(clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
 		  {
 			  //change parameter of quantity ignition fuel
-					inputRepaint(++flame_bright);
+				if(++flame_bright.curVal > flame_bright.maxVal) flame_bright.curVal = flame_bright.minVal;
+					inputRepaint(flame_bright.curVal);
 			}
 		}		
 	 else if(par == DEC)
@@ -284,54 +294,65 @@ void moveUpMenu()
 	   if(activeItem == (void*)&us_FireModeChange)
 		   {
 			  	//change parameter of fire mode
-				 inputRepaint(--fire_mode);
+				 if(--fire_mode.curVal < fire_mode.minVal) fire_mode.curVal = fire_mode.maxVal;
+				  inputRepaint(fire_mode.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_TempBoilChange)
 		   {
 			   //change parameter of temperature of boiler
-				 inputRepaint(--temp_boil);
+				 if(--temp_boil.curVal < temp_boil.minVal) temp_boil.curVal = temp_boil.maxVal;
+				 inputRepaint(temp_boil.curVal);
+				 
 			 }			
 		
 		 else if(activeItem == (void*)&us_IgnTimeChange)
 		   {
 			   //change parameter of ignition time
-				 inputRepaint(--time_ign);
+				 if(--time_ign.curVal < time_ign.minVal) time_ign.curVal = time_ign.maxVal;
+				 inputRepaint(time_ign.curVal);
 			 }
 		 else if(activeItem == (void*)&us_TanTimeChange)
 		   {
 			   //change parameter of tan time
-				 inputRepaint(--tan_work);
+				 if(--tan_work.curVal < tan_work.maxVal) tan_work.curVal = tan_work.maxVal;
+				 inputRepaint(tan_work.curVal);
 			 }
 
 		 else if(activeItem == (void*)&us_FuelIgnChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(--fuel_ign);
+				 if(--fuel_ign.curVal < fuel_ign.minVal) fuel_ign.curVal = fuel_ign.maxVal;
+				 inputRepaint(fuel_ign.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_ScrewFillingChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(--screw_fill);
+				 if(--screw_fill.curVal < screw_fill.minVal) screw_fill.curVal = screw_fill.maxVal;
+				 inputRepaint(screw_fill.curVal);
 			 }
 			
 		else if(activeItem == (void*)&us_CleanPerChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(--clean_per);
+				if(--clean_per.curVal < clean_per.minVal) clean_per.curVal = clean_per.maxVal;
+				inputRepaint(clean_per.curVal);
 			}		
 
 		else if(activeItem == (void*)&us_CleanTimeChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(--clean_time);
+				clean_time -= 0.01f;
+				if(clean_time < clean_time_min) clean_time = clean_time_max;
+				inputRepaint(clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(--flame_bright);
+				if(--flame_bright.curVal < flame_bright.minVal) flame_bright.curVal = flame_bright.maxVal;
+					inputRepaint(flame_bright.curVal);
 			}
 		}			
 
@@ -340,42 +361,42 @@ void moveUpMenu()
 	   if(activeItem == (void*)&us_FireModeChange)
 		   {
 			  	//change parameter of fire mode
-				 inputRepaint(fire_mode);
+				 inputRepaint(fire_mode.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_TempBoilChange)
 		   {
 			   //change parameter of temperature of boiler
-				 inputRepaint(temp_boil);
+				 inputRepaint(temp_boil.curVal);
 			 }			
 		
 		 else if(activeItem == (void*)&us_IgnTimeChange)
 		   {
 			   //change parameter of ignition time
-				 inputRepaint(time_ign);
+				 inputRepaint(time_ign.curVal);
 			 }
 		 else if(activeItem == (void*)&us_TanTimeChange)
 		   {
 			   //change parameter of tan time
-				 inputRepaint(tan_work);
+				 inputRepaint(tan_work.curVal);
 			 }
 
 		 else if(activeItem == (void*)&us_FuelIgnChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(fuel_ign);
+				 inputRepaint(fuel_ign.curVal);
 			 }
 			
 		 else if(activeItem == (void*)&us_ScrewFillingChange)
 		   {
 			   //change parameter of quantity ignition fuel
-				 inputRepaint(screw_fill);
+				 inputRepaint(screw_fill.curVal);
 			 }
 			
 		else if(activeItem == (void*)&us_CleanPerChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(clean_per);
+				inputRepaint(clean_per.curVal);
 			}		
 
 		else if(activeItem == (void*)&us_CleanTimeChange)
@@ -387,7 +408,7 @@ void moveUpMenu()
 		else if(activeItem == (void*)&us_FlameBrightChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(flame_bright);
+				inputRepaint(flame_bright.curVal);
 			}
 		}				
 	}

@@ -18,6 +18,7 @@
 "lcd_driver configuration\menu.o"
 "lcd_driver configuration\keyboard.o"
 "lcd_driver configuration\work_values.o"
+"lcd_driver configuration\out_dev.o"
 --library_type=microlib --strict --scatter "lcd_driver Configuration\lcd_driver Configuration.sct"
 
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

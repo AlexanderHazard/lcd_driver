@@ -537,6 +537,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>out_devices</GroupName>
+          <Files>
+            <File>
+              <FileName>out_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\out_dev.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
