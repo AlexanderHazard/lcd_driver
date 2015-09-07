@@ -1,11 +1,15 @@
 #include "Menu.h"
 #include "hd4480.h"
 #include "work_values.h"
+#include "out_dev.h"
 
 //strucure with settings for lcd initialization
 void lcdMakeInitSettings();
 void inputMenu(valueChange par);
 void inputRepaint(uint16_t value);
+void actionRepaint(devstate acState);
+void actionMenu(valueChange option);
+
 LCD_InitTypeDef LCD_InitStr;
 char* MAIN_MENU_TEXT = "Главное меню";
 
@@ -56,27 +60,27 @@ MAKE_MENU(us_FlameBright, us_Diagnostic, us_CleanTime, m_Sett, us_FlameBrightCha
 MAKE_MENU(us_Diagnostic, NULL_ENTRY, us_FlameBright, m_Sett, d_ScrewTaker, SIMPLE,9, "Диагностика");
 
    /*Diagnostic sub menu*/
-   MAKE_MENU(d_ScrewTaker, d_ScrewBurner, NULL_ENTRY, us_Diagnostic, NULL_ENTRY, SIMPLE,0, "Шнек подачи");
+   MAKE_MENU(d_ScrewTaker, d_ScrewBurner, NULL_ENTRY, us_Diagnostic, d_ScrewTakerChange, SIMPLE,0, "Шнек подачи");
       //sub menu to action
 	   MAKE_MENU(d_ScrewTakerChange, NULL_ENTRY, NULL_ENTRY, d_ScrewTaker, NULL_ENTRY, ACTION,0, "Шнек подачи");
 		
-   MAKE_MENU(d_ScrewBurner, d_Tan, d_ScrewTaker, us_Diagnostic, NULL_ENTRY, SIMPLE,1, "Шнек горелки");
+   MAKE_MENU(d_ScrewBurner, d_Tan, d_ScrewTaker, us_Diagnostic, d_ScrewBurnerChange, SIMPLE,1, "Шнек горелки");
          //sub menu to action
 	   MAKE_MENU(d_ScrewBurnerChange, NULL_ENTRY, NULL_ENTRY, d_ScrewBurner, NULL_ENTRY, ACTION,0, "Шнек горелки");
 		
-   MAKE_MENU(d_Tan, d_FireBar, d_ScrewBurner, us_Diagnostic, NULL_ENTRY, SIMPLE,2, "Тэн");
+   MAKE_MENU(d_Tan, d_FireBar, d_ScrewBurner, us_Diagnostic, d_TanChange, SIMPLE,2, "Тэн");
          //sub menu to action
 	   MAKE_MENU(d_TanChange, NULL_ENTRY, NULL_ENTRY, d_Tan, NULL_ENTRY, ACTION,0, "Тэн");
 		 
-   MAKE_MENU(d_FireBar, d_BoilerPump, d_Tan, us_Diagnostic, NULL_ENTRY, SIMPLE,3, "Колосник");
+   MAKE_MENU(d_FireBar, d_BoilerPump, d_Tan, us_Diagnostic, d_FireBarChange, SIMPLE,3, "Колосник");
          //sub menu to action
 	   MAKE_MENU(d_FireBarChange, NULL_ENTRY, NULL_ENTRY, d_FireBar, NULL_ENTRY, ACTION,0, "Колосник");
 		
-   MAKE_MENU(d_BoilerPump, d_KettlePump, d_FireBar, us_Diagnostic, NULL_ENTRY, SIMPLE,4, "Насос бойлера");
+   MAKE_MENU(d_BoilerPump, d_KettlePump, d_FireBar, us_Diagnostic, d_BoilerPumpChange, SIMPLE,4, "Насос бойлера");
          //sub menu to action
 	   MAKE_MENU(d_BoilerPumpChange, NULL_ENTRY, NULL_ENTRY, d_BoilerPump, NULL_ENTRY, ACTION,0, "Насос бойлера");
 		 
-   MAKE_MENU(d_KettlePump, NULL_ENTRY, d_BoilerPump, us_Diagnostic, NULL_ENTRY, SIMPLE,5, "Насос котла");
+   MAKE_MENU(d_KettlePump, NULL_ENTRY, d_BoilerPump, us_Diagnostic, d_KettlePumpChange, SIMPLE,5, "Насос котла");
 	       //sub menu to action
 	   MAKE_MENU(d_KettlePumpChange, NULL_ENTRY, NULL_ENTRY, d_KettlePump, NULL_ENTRY, ACTION,0, "Насос котла");
 //currentMenuItem
@@ -157,6 +161,11 @@ void moveUpMenu()
 		 {
 			inputMenu(INC);
 		 }
+		 
+	 else if(activeItem->Select == ACTION)
+		 {
+		  actionMenu(INC);
+		 }
 }
 		 
  void moveDnMenu()
@@ -177,6 +186,11 @@ void moveUpMenu()
 		 {
 			inputMenu(DEC);
 		 }
+		 
+		 else if(activeItem->Select == ACTION)
+		  {
+			  actionMenu(DEC);
+			}
 
   }
 	
@@ -203,6 +217,12 @@ void moveUpMenu()
 		 {
 			 LCD_Clear();
 			 inputMenu(ENTER);
+		 }
+		 
+		 else if(activeItem->Select == ACTION) 
+		 {
+			 LCD_Clear();
+			 actionMenu(ENTER);
 		 }
  	}
 	
@@ -424,7 +444,91 @@ void moveUpMenu()
 		LCD_PutUnsignedInt(value);//print value
 	}
 	
-	void actionMenu()
+	void actionMenu(valueChange option)
 	{
-		
+	if(option != ENTER)
+	{		
+		/*change value and repaint on display*/
+		if(activeItem == (void*)&d_ScrewTakerChange)
+		 {
+		   changeDevState(&screwTake);
+			 actionRepaint(screwTake.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_ScrewBurnerChange)
+		 {
+		   changeDevState(&screwIgn);
+			 actionRepaint(screwIgn.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_TanChange)
+		 {
+		   changeDevState(&outTan);
+			 actionRepaint(outTan.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_FireBarChange)
+		 {
+		   changeDevState(&outFireBar);
+			 actionRepaint(outFireBar.CurrentState);
+		 }
+		 
+		 else if(activeItem == (void*)&d_BoilerPumpChange)
+		 {
+		   changeDevState(&outPumpBoil);
+			 actionRepaint(outPumpBoil.CurrentState);
+		 }
+		 
+		 else if(activeItem == (void*)&d_KettlePumpChange)
+		 {
+		   changeDevState(&outPumpCatl);
+			 actionRepaint(outPumpCatl.CurrentState);
+		 }
+	 }
+	else
+	 {
+	   /*when enter to action menu, show current state*/
+		 if(activeItem == (void*)&d_ScrewTakerChange)
+		 {
+			 actionRepaint(screwTake.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_ScrewBurnerChange)
+		 {
+			 actionRepaint(screwIgn.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_TanChange)
+		 {
+       actionRepaint(outTan.CurrentState);
+		 }
+		 
+		else if(activeItem == (void*)&d_FireBarChange)
+		 {
+       actionRepaint(outFireBar.CurrentState);
+		 }
+		 
+		 else if(activeItem == (void*)&d_BoilerPumpChange)
+		 {
+       actionRepaint(outPumpBoil.CurrentState);
+		 }
+		 
+		 else if(activeItem == (void*)&d_KettlePumpChange)
+		 {
+       actionRepaint(outPumpCatl.CurrentState);
+		 }
+	 }
 	}
+	
+	inline void actionRepaint(devstate acState)
+	 {
+	   		//if need, we clear display
+		LCD_Goto(1, 0);//print title
+		LCD_Puts(activeItem->Text);
+		LCD_Goto(2, 2);
+		LCD_Puts("Состояние:");
+		LCD_Puts("   ");
+		LCD_Goto(12, 2);
+		if(acState == ENABLE_STATE) LCD_Puts("Вкл.");//print value
+		else if(acState == DISABLE_STATE) LCD_Puts("Откл.");//print value
+	 }

@@ -1,5 +1,8 @@
 #include "work_values.h"
 
+volatile float clean_time,clean_time_max, clean_time_min;
+volatile workvalue fire_mode, temp_boil, time_ign, tan_work, fuel_ign, screw_fill, clean_per, flame_bright;
+
 void readFromFlashMemory()
 {
   fire_mode.curVal = 0;

@@ -25,3 +25,4 @@ lcd_driver configuration\menu.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_h
 lcd_driver configuration\menu.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h
 lcd_driver configuration\menu.o: ..\Inc\hd4480.h
 lcd_driver configuration\menu.o: ..\Inc\work_values.h
+lcd_driver configuration\menu.o: ..\Inc\out_dev.h

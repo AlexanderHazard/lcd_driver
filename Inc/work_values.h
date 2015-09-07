@@ -10,8 +10,8 @@ typedef struct{
    volatile int16_t maxVal;
 } workvalue;
 
-  static workvalue fire_mode, temp_boil, time_ign, tan_work, fuel_ign, screw_fill, clean_per, flame_bright;
- volatile static float clean_time,clean_time_max, clean_time_min;
+ volatile extern workvalue fire_mode, temp_boil, time_ign, tan_work, fuel_ign, screw_fill, clean_per, flame_bright;
+ volatile extern float clean_time,clean_time_max, clean_time_min;
 
   void readFromFlashMemory();
 #endif
