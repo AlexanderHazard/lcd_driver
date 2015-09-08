@@ -8,40 +8,10 @@ Project File Date:  09/07/2015
 
 <h2>Output:</h2>
 Build target 'lcd_driver Configuration'
-compiling main.c...
-..\Inc\Menu.h(33): warning:  #1295-D: Deprecated declaration lcdStartWorking - give arg types
-         void lcdStartWorking();
-..\Inc\Menu.h(34): warning:  #1295-D: Deprecated declaration lcdRepaintMenu - give arg types
-         void lcdRepaintMenu();
-..\Inc\Menu.h(37): warning:  #1295-D: Deprecated declaration moveUpMenu - give arg types
-         void moveUpMenu();
-..\Inc\Menu.h(38): warning:  #1295-D: Deprecated declaration moveDnMenu - give arg types
-         void moveDnMenu();
-..\Inc\Menu.h(39): warning:  #1295-D: Deprecated declaration moveLfMenu - give arg types
-         void moveLfMenu();
-..\Inc\Menu.h(40): warning:  #1295-D: Deprecated declaration moveRgMenu - give arg types
-         void moveRgMenu();
-..\Inc\Menu.h(48): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Inc\keyboard.h(7): warning:  #1295-D: Deprecated declaration initKeyboard - give arg types
-  void initKeyboard();
-..\Inc\keyboard.h(9): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
-  void initOutDevices();
-..\Inc\out_dev.h(22): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Inc\work_values.h(16): warning:  #1295-D: Deprecated declaration readFromFlashMemory - give arg types
-    void readFromFlashMemory();
-..\Inc\work_values.h(17): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Src\main.c(153): warning:  #177-D: function "MX_GPIO_Init" was declared but never referenced
-  void MX_GPIO_Init(void)
-..\Src\main.c: 14 warnings, 0 errors
 linking...
-Program Size: Code=9720 RO-data=1480 RW-data=132 ZI-data=1028  
+Program Size: Code=13532 RO-data=1480 RW-data=140 ZI-data=1076  
 FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 14 Warning(s).
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 0 Warning(s).
 Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
 Erase Done.
 Programming Done.
@@ -59,125 +29,91 @@ claration moveUpMenu - give arg types
          void moveRgMenu();
 ..\Inc\Menu.h(48): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Inc\hd4480.h(122): warning:  #1-D: last line of file ends without a newline
+..\Inc\hd4480.h(123): warning:  #1-D: last line of file ends without a newline
   /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-..\Inc\work_values.h(16): warning:  #1295-D: Deprecated declaration readFromFlashMemory - give arg types
+..\Inc\work_values.h(22): warning:  #1295-D: Deprecated declaration readFromFlashMemory - give arg types
     void readFromFlashMemory();
-..\Inc\work_values.h(17): warning:  #1-D: last line of file ends without a newline
+..\Inc\work_values.h(23): warning:  #1295-D: Deprecated declaration writeToFlashMemory - give arg types
+    void writeToFlashMemory();
+..\Inc\work_values.h(24): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
   void initOutDevices();
-..\Inc\out_dev.h(22): warning:  #1-D: last line of file ends without a newline
+..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
+  void disableAll();
+..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Src\Menu.c(7): warning:  #1295-D: Deprecated declaration lcdMakeInitSettings - give arg types
   void lcdMakeInitSettings();
-..\Src\Menu.c(454): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(471): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwTake);
-..\Src\Menu.c(460): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(477): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwIgn);
-..\Src\Menu.c(466): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(483): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outTan);
-..\Src\Menu.c(472): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(489): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outFireBar);
-..\Src\Menu.c(478): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(495): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpBoil);
-..\Src\Menu.c(484): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(501): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpCatl);
-..\Src\Menu.c(534): warning:  #1-D: last line of file ends without a newline
+..\Src\Menu.c(551): warning:  #1-D: last line of file ends without a newline
          }
-..\Src\Menu.c: 20 warnings, 0 errors
-compiling out_dev.c...
+..\Src\Menu.c: 22 warnings, 0 errors
+linking...
+Program Size: Code=13532 RO-data=1480 RW-data=140 ZI-data=1076  
+FromELF: creating hex file...
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 22 Warning(s).
+e ends without a newline
+  #endif
 ..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
   void initOutDevices();
-..\Inc\out_dev.h(22): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Src\out_dev.c(5): warning:  #1295-D: Deprecated declaration gpioDevInit - give arg types
-  void gpioDevInit();
-..\Src\out_dev.c(97): warning:  #1-D: last line of file ends without a newline
-  }
-..\Src\out_dev.c: 4 warnings, 0 errors
-linking...
-Program Size: Code=9700 RO-data=1480 RW-data=132 ZI-data=1028  
-FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 38 Warning(s).
-Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-es();
-..\Inc\out_dev.h(22): warning:  #1-D: last line of file ends without a newline
+..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
+  void disableAll();
+..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Src\Menu.c(7): warning:  #1295-D: Deprecated declaration lcdMakeInitSettings - give arg types
   void lcdMakeInitSettings();
-..\Src\Menu.c(454): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(470): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwTake);
-..\Src\Menu.c(460): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(476): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwIgn);
-..\Src\Menu.c(466): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(482): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outTan);
-..\Src\Menu.c(472): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(488): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outFireBar);
-..\Src\Menu.c(478): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(494): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpBoil);
-..\Src\Menu.c(484): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(500): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpCatl);
-..\Src\Menu.c(534): warning:  #1-D: last line of file ends without a newline
+..\Src\Menu.c(550): warning:  #1-D: last line of file ends without a newline
          }
-..\Src\Menu.c: 20 warnings, 0 errors
-compiling keyboard.c...
-..\Inc\keyboard.h(7): warning:  #1295-D: Deprecated declaration initKeyboard - give arg types
-  void initKeyboard();
-..\Inc\keyboard.h(9): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Inc\Menu.h(33): warning:  #1295-D: Deprecated declaration lcdStartWorking - give arg types
-         void lcdStartWorking();
-..\Inc\Menu.h(34): warning:  #1295-D: Deprecated declaration lcdRepaintMenu - give arg types
-         void lcdRepaintMenu();
-..\Inc\Menu.h(37): warning:  #1295-D: Deprecated declaration moveUpMenu - give arg types
-         void moveUpMenu();
-..\Inc\Menu.h(38): warning:  #1295-D: Deprecated declaration moveDnMenu - give arg types
-         void moveDnMenu();
-..\Inc\Menu.h(39): warning:  #1295-D: Deprecated declaration moveLfMenu - give arg types
-         void moveLfMenu();
-..\Inc\Menu.h(40): warning:  #1295-D: Deprecated declaration moveRgMenu - give arg types
-         void moveRgMenu();
-..\Inc\Menu.h(48): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Src\keyboard.c(4): warning:  #1295-D: Deprecated declaration extiConfiguration - give arg types
-    static void extiConfiguration();//ports configuration
-..\Src\keyboard.c: 10 warnings, 0 errors
-compiling work_values.c...
-..\Inc\work_values.h(16): warning:  #1295-D: Deprecated declaration readFromFlashMemory - give arg types
-    void readFromFlashMemory();
-..\Inc\work_values.h(17): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Src\work_values.c(30): warning:  #1-D: last line of file ends without a newline
-  }
-..\Src\work_values.c: 3 warnings, 0 errors
+..\Src\Menu.c: 22 warnings, 0 errors
 compiling out_dev.c...
 ..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
   void initOutDevices();
-..\Inc\out_dev.h(22): warning:  #1-D: last line of file ends without a newline
+..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
+  void disableAll();
+..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Src\out_dev.c(5): warning:  #1295-D: Deprecated declaration gpioDevInit - give arg types
   void gpioDevInit();
-..\Src\out_dev.c(97): warning:  #1-D: last line of file ends without a newline
+..\Src\out_dev.c(76): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&screwTake);
+..\Src\out_dev.c(77): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&screwIgn);
+..\Src\out_dev.c(78): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&outTan);
+..\Src\out_dev.c(79): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&outFireBar);
+..\Src\out_dev.c(80): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&outPumpBoil);
+..\Src\out_dev.c(81): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+         disableDev(&outPumpCatl);
+..\Src\out_dev.c(109): warning:  #1-D: last line of file ends without a newline
   }
-..\Src\out_dev.c: 4 warnings, 0 errors
+..\Src\out_dev.c: 11 warnings, 0 errors
 linking...
-Program Size: Code=8920 RO-data=1480 RW-data=132 ZI-data=1044  
+Program Size: Code=13436 RO-data=1480 RW-data=140 ZI-data=1076  
 FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 64 Warning(s).
-Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-65 Warning(s).
-Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-.
-Finished: 1 information, 0 warning and 1 error messages.
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 1 Error(s), 66 Warning(s).
-Target not created
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 49 Warning(s).

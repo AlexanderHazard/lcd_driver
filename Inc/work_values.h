@@ -3,6 +3,12 @@
 #define __WORK_VALUES_H
 
 #include "stm32f1xx_hal.h"
+#define ADDR_FLASH_PAGE_100   ((uint32_t)0x08019000) /* Base @ of Page 100, 1 Kbytes */
+#define ADDR_FLASH_PAGE_101   ((uint32_t)0x08019400) /* Base @ of Page 101, 1 Kbytes */
+#define ADDR_FLASH_PAGE_124   ((uint32_t)0x0801F000) /* Base @ of Page 124, 1 Kbytes */
+#define ADDR_FLASH_PAGE_125   ((uint32_t)0x0801F400) /* Base @ of Page 125, 1 Kbytes */
+#define ADDR_FLASH_PAGE_126   ((uint32_t)0x0801F800) /* Base @ of Page 126, 1 Kbytes */
+#define ADDR_FLASH_PAGE_127   ((uint32_t)0x0801FC00) /* Base @ of Page 127, 1 Kbytes */
 
 typedef struct{
    volatile int16_t minVal;
@@ -14,4 +20,5 @@ typedef struct{
  volatile extern float clean_time,clean_time_max, clean_time_min;
 
   void readFromFlashMemory();
+  void writeToFlashMemory();
 #endif

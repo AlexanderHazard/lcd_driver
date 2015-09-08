@@ -9,6 +9,8 @@ void gpioDevInit();
 */
 void initOutDevices()
 {
+		//__HAL_AFIO_REMAP_SWJ_DISABLE();
+	
 	/*init device structures*/
 	 screwTake.cPort = GPIOA;
    screwTake.IO_port = ScrTkOut;
@@ -67,6 +69,16 @@ void disableDev(deviceInfo *cDevice)
  {
 	cDevice->CurrentState = DISABLE_STATE;
 	HAL_GPIO_WritePin(cDevice->cPort, cDevice->IO_port, GPIO_PIN_RESET);
+ }
+ 
+ void disableAll()
+ {
+	 disableDev(&screwTake);
+	 disableDev(&screwIgn);
+	 disableDev(&outTan);
+	 disableDev(&outFireBar);
+	 disableDev(&outPumpBoil);
+	 disableDev(&outPumpCatl);
  }
 
 /*init gpios to output*/

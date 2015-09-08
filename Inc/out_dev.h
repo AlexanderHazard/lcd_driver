@@ -18,5 +18,6 @@ void initOutDevices();
 void changeDevState(deviceInfo *cDevice);//change state of device
 void enableDev(deviceInfo *cDevice);//enable device
 void disableDev(deviceInfo *cDevice);//disable device
+void disableAll();
 
 #endif

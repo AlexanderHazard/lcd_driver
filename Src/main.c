@@ -94,7 +94,6 @@ int main(void)
   /* USER CODE BEGIN 3 */
   /* Infinite loop */
 	//start_lcd_work();
-	__HAL_AFIO_REMAP_SWJ_DISABLE();
 	
 	lcdStartWorking();
 	lcdRepaintMenu();

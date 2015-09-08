@@ -7,6 +7,7 @@
 void lcdMakeInitSettings();
 void inputMenu(valueChange par);
 void inputRepaint(uint16_t value);
+void inputRepaintF(float value);
 void actionRepaint(devstate acState);
 void actionMenu(valueChange option);
 
@@ -196,11 +197,16 @@ void moveUpMenu()
 	
  void moveLfMenu()
   {
+		/*save data if we are leaving input menu*/
+		if(activeItem->Select == INPUT) writeToFlashMemory();
+		if(activeItem->Select == ACTION) disableAll();
+		
    if((void*)activeItem->Parent == (void*)&NULL_ENTRY) return;
 	   else activeItem = (void*)activeItem->Parent;
 		//repaitn display
 		lcdRepaintMenu();
-		lcdMovePoint(activeItem->Index);
+		volatile int stPage = (activeItem->Index / FIELDS_NUMBER);
+		lcdMovePoint(activeItem->Index  - (FIELDS_NUMBER*stPage));
   }
 	
  void moveRgMenu()
@@ -299,7 +305,7 @@ void moveUpMenu()
 			  //change parameter of quantity ignition fuel
 				clean_time += 0.01f;
 				if(clean_time > clean_time_max) clean_time = clean_time_min;
-				inputRepaint(clean_time);
+				inputRepaintF(clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
@@ -365,7 +371,7 @@ void moveUpMenu()
 			  //change parameter of quantity ignition fuel
 				clean_time -= 0.01f;
 				if(clean_time < clean_time_min) clean_time = clean_time_max;
-				inputRepaint(clean_time);
+				inputRepaintF(clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
@@ -422,7 +428,7 @@ void moveUpMenu()
 		else if(activeItem == (void*)&us_CleanTimeChange)
 		  {
 			  //change parameter of quantity ignition fuel
-				inputRepaint(clean_time);
+				inputRepaintF(clean_time);
 			}					
 			
 		else if(activeItem == (void*)&us_FlameBrightChange)
@@ -438,10 +444,21 @@ void moveUpMenu()
 		//if need, we clear display
 		LCD_Goto(1, 0);//print title
 		LCD_Puts(activeItem->Text);
-		LCD_Goto(3, 1);
+		LCD_Goto(2, 1);
 		LCD_Puts("Параметр:");
 		LCD_Putc(' ');
 		LCD_PutUnsignedInt(value);//print value
+	}
+	
+	inline void inputRepaintF(float value)
+	{
+		//if need, we clear display
+		LCD_Goto(1, 0);//print title
+		LCD_Puts(activeItem->Text);
+		LCD_Goto(2, 1);
+		LCD_Puts("Параметр:");
+		LCD_Putc(' ');
+		LCD_PutFloat(value);//print value
 	}
 	
 	void actionMenu(valueChange option)

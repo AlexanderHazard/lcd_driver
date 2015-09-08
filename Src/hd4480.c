@@ -1,5 +1,6 @@
 #include "hd4480.h"
 #include <stdio.h>
+#include <math.h>
 
 void LCD_LowLevel_Init();
 void LCD_WriteCommand(uint8_t n);
@@ -226,6 +227,18 @@ void LCD_PutUnsignedInt(uint32_t n)
 	while(i-- > 0){
 		LCD_Putc(c1[i]);
 	}
+}
+
+void LCD_PutFloat(float val)
+{
+  double fract, intpart;
+	fract = modf(val, &intpart);
+	
+	if(val < 0) LCD_Putc('-');
+	LCD_PutUnsignedInt(intpart);
+	LCD_Putc('.');
+	fract *= 100;
+	LCD_PutUnsignedInt(fract);
 }
 
 void LCD_EntryModeCommand(LCD_EntryModeCmdTypeDef *LCD_EntryModeCmdStruct)

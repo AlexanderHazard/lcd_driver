@@ -113,6 +113,7 @@ void LCD_Putc(char c);
 void LCD_Puts(const char *s);
 void LCD_PutSignedInt(int32_t value);
 void LCD_PutUnsignedInt(uint32_t value);
+void LCD_PutFloat(float val);
 void LCD_EntryModeCommand(LCD_EntryModeCmdTypeDef *LCD_EntryModeCmdStruct);
 void LCD_DisplayOnOffCommand(LCD_DisplayOnOffCmdTypedef *LCD_DisplayOnOffStruct);
 void LCD_CursorDisplayShiftCommand(LCD_CursorDisplayShiftCmdTypeDef *LCD_CursorDisplayShiftStruct);
