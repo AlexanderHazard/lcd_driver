@@ -22,5 +22,8 @@ lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm
 lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h
 lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h
 lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h
+lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h
+lcd_driver configuration\stm32f1xx_it.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h
 lcd_driver configuration\stm32f1xx_it.o: ..\Inc\stm32f1xx_it.h
 lcd_driver configuration\stm32f1xx_it.o: ..\Inc\menu.h
+lcd_driver configuration\stm32f1xx_it.o: ..\Inc\work_timer.h

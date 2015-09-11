@@ -23,3 +23,5 @@ lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm3
 lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h
 lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h
 lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h
+lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h
+lcd_driver configuration\work_values.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h

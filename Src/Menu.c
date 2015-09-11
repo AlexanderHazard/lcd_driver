@@ -2,6 +2,7 @@
 #include "hd4480.h"
 #include "work_values.h"
 #include "out_dev.h"
+#include "work_algorythm.h"
 
 //strucure with settings for lcd initialization
 void lcdMakeInitSettings();
@@ -17,7 +18,7 @@ char* MAIN_MENU_TEXT = "Главное меню";
 static const menuItem  NULL_ENTRY = {(void*)0, (void*)0, (void*)0, (void*)0, SIMPLE,0, ""};
           //name   next     prev          parr        child
           //name   next     prev          parr        child
-MAKE_MENU(m_Run, m_Sett, NULL_ENTRY, NULL_ENTRY, NULL_ENTRY, SIMPLE, 0, "Старт");
+MAKE_MENU(m_Run, m_Sett, NULL_ENTRY, NULL_ENTRY, NULL_ENTRY, SYSTEM, 0, "Старт");
 MAKE_MENU(m_Sett, NULL_ENTRY, m_Run, NULL_ENTRY, us_FireMode,  SIMPLE, 1, "Настройки");
 
 //User settings sub menu
@@ -146,7 +147,18 @@ void lcdRepaintMenu()
 /*Moving through the menu*/
 void moveUpMenu()
 {
-	if(activeItem->Select == SIMPLE)
+
+	 if(activeItem->Select == INPUT)
+		 {
+			inputMenu(INC);
+		 }
+		 
+	 else if(activeItem->Select == ACTION)
+		 {
+		  actionMenu(INC);
+		 }
+		 
+	else //(activeItem->Select == SIMPLE)
 	 {
 		//get page number
 		 int stPage = (activeItem->Index / FIELDS_NUMBER);
@@ -158,32 +170,13 @@ void moveUpMenu()
 		lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
 
 	}
-	 else if(activeItem->Select == INPUT)
-		 {
-			inputMenu(INC);
-		 }
-		 
-	 else if(activeItem->Select == ACTION)
-		 {
-		  actionMenu(INC);
-		 }
 }
 		 
  void moveDnMenu()
   {
 		//get page number
-	if(activeItem->Select == SIMPLE)
-		{
-		 volatile int stPage = (activeItem->Index / FIELDS_NUMBER);
-		
- 		 if((void*)activeItem->Next == (void*)&NULL_ENTRY) return;
-	     else activeItem = (void*)activeItem->Next;
-			
-       //if we change a page we need to repaint display
-		   if(stPage != (activeItem->Index / FIELDS_NUMBER)) {stPage = (activeItem->Index / FIELDS_NUMBER); lcdRepaintMenu();}
-		   lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
-	   }
-	  else if(activeItem->Select == INPUT)
+
+	  if(activeItem->Select == INPUT)
 		 {
 			inputMenu(DEC);
 		 }
@@ -192,6 +185,18 @@ void moveUpMenu()
 		  {
 			  actionMenu(DEC);
 			}
+			
+		else //(activeItem->Select == SIMPLE)
+		 {
+		  volatile int stPage = (activeItem->Index / FIELDS_NUMBER);
+		
+ 		  if((void*)activeItem->Next == (void*)&NULL_ENTRY) return;
+	      else activeItem = (void*)activeItem->Next;
+			
+       //if we change a page we need to repaint display
+		   if(stPage != (activeItem->Index / FIELDS_NUMBER)) {stPage = (activeItem->Index / FIELDS_NUMBER); lcdRepaintMenu();}
+		   lcdMovePoint(activeItem->Index - (FIELDS_NUMBER*stPage));
+	   }
 
   }
 	
@@ -211,6 +216,12 @@ void moveUpMenu()
 	
  void moveRgMenu()
   {
+		if(activeItem->Select == SYSTEM) 
+		 {
+       workState = START_WORK;
+			 return;
+		 }
+		
 	  if((void*)activeItem->Child == (void*)&NULL_ENTRY) return;
 	   else activeItem = (void*)activeItem->Child;
 		
@@ -230,6 +241,8 @@ void moveUpMenu()
 			 LCD_Clear();
 			 actionMenu(ENTER);
 		 }
+		 
+
  	}
 	
 	//Point moving

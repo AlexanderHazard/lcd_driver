@@ -38,14 +38,18 @@
 #include "keyboard.h"
 #include "out_dev.h"
 #include "work_values.h"
+#include "work_timer.h"
+#include "work_algorythm.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static GPIO_InitTypeDef  GPIO_InitStruct;
+controll_state workState = FREE;
 
 /* USER CODE BEGIN Includes */
+
 
 /* USER CODE END Includes */
 
@@ -96,7 +100,7 @@ int main(void)
 	//start_lcd_work();
 	
 	lcdStartWorking();
-	lcdRepaintMenu();
+  lcdRepaintMenu();
 	lcdMovePoint(0);
 	
 	//keyboard init
@@ -104,12 +108,30 @@ int main(void)
 	
 	//read from flash
   readFromFlashMemory();	
+	
 	//init out devices
 	initOutDevices();
 	
+	//init timer for work
+	initTimers();
   while (1)
   {
      //HAL_Delay(100);
+		if(workState == FREE)
+		  {
+
+			}
+		else if(workState == START_WORK)
+		  {
+			  alWorkSystem();
+				
+			}	
+    else if(workState == END_WORK)
+	    {
+			 lcdRepaintMenu();
+	     lcdMovePoint(0);
+			 workState = FREE;
+			}		
   }
   /* USER CODE END */
 

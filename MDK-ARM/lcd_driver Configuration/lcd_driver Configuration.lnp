@@ -10,6 +10,8 @@
 "lcd_driver configuration\stm32f1xx_hal_pwr.o"
 "lcd_driver configuration\stm32f1xx_hal_dma.o"
 "lcd_driver configuration\stm32f1xx_hal_gpio.o"
+"lcd_driver configuration\stm32f1xx_hal_tim.o"
+"lcd_driver configuration\stm32f1xx_hal_tim_ex.o"
 "lcd_driver configuration\startup_stm32f103xe.o"
 "lcd_driver configuration\stm32f1xx_hal_msp.o"
 "lcd_driver configuration\main.o"
@@ -19,6 +21,8 @@
 "lcd_driver configuration\keyboard.o"
 "lcd_driver configuration\work_values.o"
 "lcd_driver configuration\out_dev.o"
+"lcd_driver configuration\work_timer.o"
+"lcd_driver configuration\work_algorythm.o"
 --library_type=microlib --strict --scatter "lcd_driver Configuration\lcd_driver Configuration.sct"
 
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

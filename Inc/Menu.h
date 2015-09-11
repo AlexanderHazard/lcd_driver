@@ -5,7 +5,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
-typedef enum {SIMPLE, ACTION, INPUT, ADMIN} itemOption;
+typedef enum {SIMPLE, ACTION, INPUT, SYSTEM} itemOption;
 typedef enum {ENTER , INC, DEC} valueChange;
 
 typedef struct PROGMEM{

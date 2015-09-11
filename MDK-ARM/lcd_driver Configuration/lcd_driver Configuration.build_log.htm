@@ -4,14 +4,50 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\micro\cube_MX\f103\lcd_driver\lcd_driver\MDK-ARM\lcd_driver.uvproj
-Project File Date:  09/07/2015
+Project File Date:  09/10/2015
 
 <h2>Output:</h2>
 Build target 'lcd_driver Configuration'
+compiling work_algorythm.c...
+..\Inc\work_algorythm.h(6): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+         void secTimCallback();
+..\Inc\work_algorythm.h(7): warning:  #1295-D: Deprecated declaration alWorkSystem - give arg types
+     void alWorkSystem();
+..\Inc\work_algorythm.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\work_timer.h(11): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+  void secTimCallback();
+..\Inc\work_timer.h(12): warning:  #1295-D: Deprecated declaration initTimers - give arg types
+  void initTimers();/*init timer*/
+..\Inc\work_timer.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
+  void initOutDevices();
+..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
+  void disableAll();
+..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\hd4480.h(123): warning:  #1-D: last line of file ends without a newline
+  /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+..\Src\work_algorythm.c(6): warning:  #1295-D: Deprecated declaration alCleaning - give arg types
+  void alCleaning();
+..\Src\work_algorythm.c(7): warning:  #1295-D: Deprecated declaration alGasTaking - give arg types
+  void alGasTaking();
+..\Src\work_algorythm.c(16): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwIgn);
+..\Src\work_algorythm.c(20): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&outFireBar);
+..\Src\work_algorythm.c(41): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwTake);
+..\Src\work_algorythm.c(45): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwIgn);
+..\Src\work_algorythm.c(64): warning:  #1-D: last line of file ends without a newline
+    }
+..\Src\work_algorythm.c: 17 warnings, 0 errors
 linking...
-Program Size: Code=13532 RO-data=1480 RW-data=140 ZI-data=1076  
+Program Size: Code=15548 RO-data=1480 RW-data=168 ZI-data=1136  
 FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 0 Warning(s).
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 17 Warning(s).
 Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
 Erase Done.
 Programming Done.
@@ -19,7 +55,11 @@ Verify OK.
 </pre>
 </body>
 </html>
-claration moveUpMenu - give arg types
+3): warning:  #1295-D: Deprecated declaration lcdStartWorking - give arg types
+         void lcdStartWorking();
+..\Inc\Menu.h(34): warning:  #1295-D: Deprecated declaration lcdRepaintMenu - give arg types
+         void lcdRepaintMenu();
+..\Inc\Menu.h(37): warning:  #1295-D: Deprecated declaration moveUpMenu - give arg types
          void moveUpMenu();
 ..\Inc\Menu.h(38): warning:  #1295-D: Deprecated declaration moveDnMenu - give arg types
          void moveDnMenu();
@@ -43,28 +83,41 @@ claration moveUpMenu - give arg types
   void disableAll();
 ..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Src\Menu.c(7): warning:  #1295-D: Deprecated declaration lcdMakeInitSettings - give arg types
+..\Inc\work_algorythm.h(6): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+         void secTimCallback();
+..\Inc\work_algorythm.h(7): warning:  #1295-D: Deprecated declaration alWorkSystem - give arg types
+     void alWorkSystem();
+..\Inc\work_algorythm.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Src\Menu.c(8): warning:  #1295-D: Deprecated declaration lcdMakeInitSettings - give arg types
   void lcdMakeInitSettings();
-..\Src\Menu.c(471): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(484): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwTake);
-..\Src\Menu.c(477): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(490): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&screwIgn);
-..\Src\Menu.c(483): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(496): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outTan);
-..\Src\Menu.c(489): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(502): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outFireBar);
-..\Src\Menu.c(495): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(508): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpBoil);
-..\Src\Menu.c(501): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+..\Src\Menu.c(514): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
                    changeDevState(&outPumpCatl);
-..\Src\Menu.c(551): warning:  #1-D: last line of file ends without a newline
+..\Src\Menu.c(564): warning:  #1-D: last line of file ends without a newline
          }
-..\Src\Menu.c: 22 warnings, 0 errors
-linking...
-Program Size: Code=13532 RO-data=1480 RW-data=140 ZI-data=1076  
-FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 22 Warning(s).
-e ends without a newline
+..\Src\Menu.c: 25 warnings, 0 errors
+compiling work_algorythm.c...
+..\Inc\work_algorythm.h(6): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+         void secTimCallback();
+..\Inc\work_algorythm.h(7): warning:  #1295-D: Deprecated declaration alWorkSystem - give arg types
+     void alWorkSystem();
+..\Inc\work_algorythm.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\work_timer.h(11): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+  void secTimCallback();
+..\Inc\work_timer.h(12): warning:  #1295-D: Deprecated declaration initTimers - give arg types
+  void initTimers();/*init timer*/
+..\Inc\work_timer.h(17): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
   void initOutDevices();
@@ -72,48 +125,81 @@ e ends without a newline
   void disableAll();
 ..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Src\Menu.c(7): warning:  #1295-D: Deprecated declaration lcdMakeInitSettings - give arg types
-  void lcdMakeInitSettings();
-..\Src\Menu.c(470): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&screwTake);
-..\Src\Menu.c(476): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&screwIgn);
-..\Src\Menu.c(482): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&outTan);
-..\Src\Menu.c(488): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&outFireBar);
-..\Src\Menu.c(494): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&outPumpBoil);
-..\Src\Menu.c(500): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-                   changeDevState(&outPumpCatl);
-..\Src\Menu.c(550): warning:  #1-D: last line of file ends without a newline
-         }
-..\Src\Menu.c: 22 warnings, 0 errors
-compiling out_dev.c...
-..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
-  void initOutDevices();
-..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
-  void disableAll();
-..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Src\out_dev.c(5): warning:  #1295-D: Deprecated declaration gpioDevInit - give arg types
-  void gpioDevInit();
-..\Src\out_dev.c(76): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&screwTake);
-..\Src\out_dev.c(77): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&screwIgn);
-..\Src\out_dev.c(78): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&outTan);
-..\Src\out_dev.c(79): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&outFireBar);
-..\Src\out_dev.c(80): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&outPumpBoil);
-..\Src\out_dev.c(81): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
-         disableDev(&outPumpCatl);
-..\Src\out_dev.c(109): warning:  #1-D: last line of file ends without a newline
+..\Inc\hd4480.h(123): warning:  #1-D: last line of file ends without a newline
+  /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+..\Src\work_algorythm.c(6): warning:  #1295-D: Deprecated declaration alCleaning - give arg types
+  void alCleaning();
+..\Src\work_algorythm.c(7): warning:  #1295-D: Deprecated declaration alGasTaking - give arg types
+  void alGasTaking();
+..\Src\work_algorythm.c(16): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwIgn);
+..\Src\work_algorythm.c(20): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&outFireBar);
+..\Src\work_algorythm.c(41): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwTake);
+..\Src\work_algorythm.c(45): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwIgn);
+..\Src\work_algorythm.c(46): error:  #167: argument of type "volatile deviceInfo *" is incompatible with parameter of type "timerInfo *"
+          startTimerDevice(&screwIgn,30);
+..\Src\work_algorythm.c(64): warning:  #1-D: last line of file ends without a newline
+    }
+..\Src\work_algorythm.c: 17 warnings, 1 error
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 1 Error(s), 64 Warning(s).
+Target not created
+f type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+                                 disableDev(&screwIgn);
+..\Src\work_timer.c(119): warning:  #186-D: pointless comparison of unsigned integer with zero
+            if(--TanTimer.secondBuff < 0 ) 
+..\Src\work_timer.c(122): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+                                        disableDev(&outTan);
+..\Src\work_timer.c(128): warning:  #186-D: pointless comparison of unsigned integer with zero
+            if(--FireBarTimer.secondBuff < 0 ) 
+..\Src\work_timer.c(131): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+                                disableDev(&outFireBar);
+..\Src\work_timer.c(137): warning:  #186-D: pointless comparison of unsigned integer with zero
+            if(--PumpBoilTimer.secondBuff < 0 ) 
+..\Src\work_timer.c(140): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+                                 disableDev(&outPumpBoil);
+..\Src\work_timer.c(146): warning:  #186-D: pointless comparison of unsigned integer with zero
+            if(--PumpCatlTimer.secondBuff < 0 ) 
+..\Src\work_timer.c(149): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+                                        disableDev(&outPumpCatl);
+..\Src\work_timer.c(152): warning:  #1-D: last line of file ends without a newline
   }
-..\Src\out_dev.c: 11 warnings, 0 errors
+..\Src\work_timer.c: 20 warnings, 0 errors
+compiling work_algorythm.c...
+..\Inc\work_algorythm.h(6): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+         void secTimCallback();
+..\Inc\work_algorythm.h(7): warning:  #1295-D: Deprecated declaration alCleaning - give arg types
+     void alCleaning();
+..\Inc\work_algorythm.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\work_timer.h(11): warning:  #1295-D: Deprecated declaration secTimCallback - give arg types
+  void secTimCallback();
+..\Inc\work_timer.h(12): warning:  #1295-D: Deprecated declaration initTimers - give arg types
+  void initTimers();/*init timer*/
+..\Inc\work_timer.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\out_dev.h(17): warning:  #1295-D: Deprecated declaration initOutDevices - give arg types
+  void initOutDevices();
+..\Inc\out_dev.h(21): warning:  #1295-D: Deprecated declaration disableAll - give arg types
+  void disableAll();
+..\Inc\out_dev.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Inc\hd4480.h(123): warning:  #1-D: last line of file ends without a newline
+  /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+..\Src\work_algorythm.c(13): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&screwIgn);
+..\Src\work_algorythm.c(17): warning:  #167-D: argument of type "volatile deviceInfo *" is incompatible with parameter of type "deviceInfo *"
+          enableDev(&outFireBar);
+..\Src\work_algorythm.c(27): warning:  #1-D: last line of file ends without a newline
+   }
+..\Src\work_algorythm.c: 13 warnings, 0 errors
 linking...
-Program Size: Code=13436 RO-data=1480 RW-data=140 ZI-data=1076  
+Program Size: Code=15432 RO-data=1480 RW-data=168 ZI-data=1136  
 FromELF: creating hex file...
-"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 49 Warning(s).
+"lcd_driver Configuration\lcd_driver Configuration.axf" - 0 Error(s), 90 Warning(s).
+Load "lcd_driver Configuration\\lcd_driver Configuration.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
